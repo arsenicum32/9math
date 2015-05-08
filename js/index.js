@@ -1,6 +1,5 @@
 var app = angular.module('myApp', ['ngMaterial']);
 
-
 app.controller("SampleCtrl", function($scope, $firebaseArray) {
 
   var list = $firebaseArray(new Firebase("https://z24s5bokzfl.firebaseio-demo.com"));
