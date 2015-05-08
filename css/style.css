@@ -42,7 +42,7 @@ i {
 }
 
 .muted {
-color: #bbb;
+color: Pink;
 font-size: inherit;
 font-weight: 700;
 text-align: left;
@@ -51,5 +51,5 @@ text-align: left;
 .md-tile-left {
   margin-right:0!important;
   padding-left:24px;
-  color: rgb(63,81,181);
+  color: HotPink;
 }
