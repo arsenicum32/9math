@@ -1,26 +1,5 @@
 var app = angular.module('myApp', ['ngMaterial']);
 
-app.controller("SampleCtrl", function($scope, $firebaseArray) {
-
-  var list = $firebaseArray(new Firebase("https://z24s5bokzfl.firebaseio-demo.com"));
-
-  $scope.list = list;
-
-  $scope.submit = function(){
-    var name = document.getElementById("name").value,
-       	message = document.getElementById("message").value;
-
-    		list.$add({ name: name, message: message }).then(function(ref) {
-          var id = ref.key();
-          list.$indexFor(id);
-        });
-  }
-
-});
-
-
-
-
 app.directive("scroll", function ($window) {
 
     return function(scope, element, attrs) {
