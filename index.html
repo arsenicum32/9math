@@ -123,6 +123,27 @@
         </md-list>
       </md-content>
     </section>
+
+    
+    <div class="container" ng-app="app" ng-controller="SampleCtrl">
+    <form action="#" ng-submit="submit()" name="message-form">
+    <p>
+      <label for="name">Name</label>
+      <input type="text" id="name" required>
+      </p>
+    <p>
+      <label for="message">Message</label>
+      <textarea type="text" id="message" required></textarea>
+    </p>
+    <p><button class="btn btn-primary">Add Message</button></p>
+  </form>
+  <ul class="messages">
+    <li ng-repeat="item in list" class="item panel">
+      <h3>{{item.name}}</h3>
+      <p>{{item.message}}</p>
+    </li>
+  </ul>
+</div>
      <!-- Angular Material Dependencies -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>

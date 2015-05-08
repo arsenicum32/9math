@@ -1,10 +1,27 @@
 var app = angular.module('myApp', ['ngMaterial']);
 
-/*
- * 'scroll' Angular Directive
- * Used to handle page header during scroll event (and rezise event too) of the window.
- *
- */
+
+app.controller("SampleCtrl", function($scope, $firebaseArray) {
+
+  var list = $firebaseArray(new Firebase("https://fiery-torch-8026.firebaseio.com/"));
+
+  $scope.list = list;
+
+  $scope.submit = function(){
+    var name = document.getElementById("name").value,
+       	message = document.getElementById("message").value;
+
+    		list.$add({ name: name, message: message }).then(function(ref) {
+          var id = ref.key();
+          list.$indexFor(id);
+        });
+  }
+
+});
+
+
+
+
 app.directive("scroll", function ($window) {
 
     return function(scope, element, attrs) {
@@ -27,7 +44,7 @@ app.directive("scroll", function ($window) {
       var titleZoom      = 1.5;
       /* The primary color palette used by Angular Material */
       var primaryColor   = [63,81,181];
-      
+
       function styleInit () {
         title.css('padding-left','16px');
         title.css('position','relative');
@@ -40,7 +57,7 @@ app.directive("scroll", function ($window) {
           title.css('top', ((dim.bottom-baseDimensions.top)-legacyToolbarH)+'px');
           element.css('height', (dim.bottom-baseDimensions.top)+'px');
           title.css('transform','scale('+((titleZoom-1)*ratio(dim)+1)+','+((titleZoom-1)*ratio(dim)+1)+')');
-          
+
         } else {
           title.css('top', '0px');
           element.css('height', legacyToolbarH+'px');
@@ -51,7 +68,7 @@ app.directive("scroll", function ($window) {
         }
         if((dim.bottom-baseDimensions.top)>legacyToolbarH*2 && fab.hasClass('hide')) {
           fab.removeClass('hide');
-        }       
+        }
         element.css('background-color','rgba('+primaryColor[0]+','+primaryColor[1]+','+primaryColor[2]+','+(1-ratio(dim))+')');
         picture.css('background-position','50% '+(ratio(dim)*50)+'%');
         /* Uncomment the line below if you want shadow inside picture (low performance) */
@@ -74,7 +91,7 @@ app.directive("scroll", function ($window) {
         handleStyle(dimensions);
         scope.$apply();
       });
-      
+
       /* Resize event listener */
       angular.element($window).bind('resize',function () {
         baseDimensions = header.getBoundingClientRect();
